@@ -1,20 +1,23 @@
 ## Пример работы
 
 ```
-from ezpos import SaleEngine
-from ezpos.models.sale import Product
+from ezpos import SaleEngineAsync, Product
+import asyncio
 
-eng = SaleEngine(ip_adress='198.162.0.107')
+eng = SaleEngineAsync(ip_address='195.101.123.124')
 
-eng.sale(
-    sale_id='123',
-    amount=100.0,
-    products=Product(
-        name='Сникерс',
-        id=124412,
-        cost=10.0,
-        quantity=10
+async def main():
+    await eng.sale(
+        sale_id='1234567890',
+        amount=100.0,
+        products=[
+            Product(**{'name': 'Product 1', 'id': '124', 'cost': 50.0, 'quantity': 1}),
+            Product(**{'name': 'Product 2', 'id': '1241', 'cost': 100.0, 'quantity': 1})
+        ],
+        timeout=30
     )
-)
+
+if __name__ == "__main__":
+    asyncio.run(main())
 
 ```
