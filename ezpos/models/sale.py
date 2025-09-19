@@ -18,7 +18,7 @@ class SaleStatusEnum(str):
 
 class Product(BaseModel):
     name: str
-    id: str
+    id: int
     cost: float
     quantity: Optional[float] = 1
     mark_code: Optional[str] = ""
